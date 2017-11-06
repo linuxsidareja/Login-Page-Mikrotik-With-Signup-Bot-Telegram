@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>@IDSkyNetwork - Paket Internet</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<link rel="shortcut icon" href="img/corner.png" type="image/x-icon">
+		<link rel="icon" href="img/corner.png" type="image/x-icon">
+		<link rel="stylesheet" href="css/custom.bootstrap.min.css">
+		<link rel="stylesheet" href="css/custom.css">
+	</head>
+	<body class="bg-img">
+		<div class="jumbroton">
+			<div class="col-md-4 col-md-offset-4 text-center">
+			<img class="logo" src="img/corner.png">
+				<fieldset class="fieldset title">
+					<legend align="center" class="legend">
+						<span class="text-center">PAKET INTERNET</span>
+					</legend>
+				</fieldset>
+				<div class="paket">
+					<div class="panel border-panel1 text-center">
+						<div class="panel-heading bg-panel1">
+						<h3>TRIAL</h3>
+						</div>
+						<div class="panel-body">
+							<p>Kecepatan : up to <b>20</b> Mbps</p>
+							<p>Kuota : Unlimited</p>
+							<p>Masa Aktif : 10 menit /hari</p>
+						</div><div class="panel-footer">
+						<p>
+						$(if logged-in == 'yes')
+						<button class="btn btn-default beli disabled">TRIAL</button> 
+						$(else) 
+						$(if trial == 'yes')
+						<a href='$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)' class="btn btn-success beli" data-toggle="tooltip" data-placement="top" title="Klik untuk auto login">TRIAL</a
+						>
+						$(else)
+						<button class="btn btn-success beli disabled" data-toggle="popover" data-placement="top" data-content="Server Offline">TRIAL</button>
+						$(endif)
+						$(endif)
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="paket">
+				<div class="panel border-panel2 text-center">
+					<div class="panel-heading bg-panel2">
+						<h3>BASIC</h3>
+					</div>
+					<div class="panel-body">
+						<p>Kecepatan : up to <b>10</b> Mbps</p>
+						<p>Kuota : Unlimited</p>
+						<p>Masa Aktif : 30 hari</p>
+						<span class="harga">Rp <b>110.000</b></span>
+						<span class="masa-aktif">bulan</span>
+					</div>
+					<div class="panel-footer">
+						<p><button class="btn btn-success beli" data-toggle="modal" data-target="#modal-signup">SIGNUP</button></p>
+					</div>
+				</div>
+			</div>
+			<div class="paket">
+				<div class="panel border-panel3 text-center">
+					<div class="panel-heading bg-panel3">
+						<h3>PRO</h3>
+					</div>
+					<div class="panel-body">
+						<p>Kecepatan : up to <b>20</b> Mbps</p>
+						<p>Kuota : Unlimited</p>
+						<p>Masa Aktif : 30 hari</p>
+						<span class="harga">Rp <b>200.000</b></span>
+						<span class="masa-aktif">bulan</span>
+					</div>
+					<div class="panel-footer">
+						<p><button class="btn btn-success beli" data-toggle="modal" data-target="#modal-signup">SIGNUP</button></p>
+					</div>
+				</div>
+			</div>
+			<div class="info bg-info">
+				<h3 class="icon-info-circled text-info">info</h3>
+				<ul>
+					<li><b>Promo!</b> Diskon 20% di bulan pertama untuk pelanggan baru.</li>
+					$(if trial == 'yes')
+					<li>Silahkan pilih <b>TRIAL</b> jika Anda ingin mencoba dulu layanan kami.</li>
+					$(endif)
+				</ul>
+			</div>
+			<div class="text-center copyright">
+				<fieldset class="fieldset">
+					<legend align="center" class="legend">
+						<span class="icon-copyright copyright">IDSkyNetwork 2017</span>
+					</legend>
+				</fieldset>
+				<div class="cs">
+                    <h4>Jl. Anggrek No. 25B - Nganjuk</h4>
+				    CS : <span class="icon-whatsapp">08123456789</span>
+				</div>
+			</div>
+			<div id="modal-signup" class="modal fade" role="dialog" data-backdrop="static">
+				<div class="modal-dialog">
+					<!-- Modal content-->
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title text-center">SIGNUP</h4>
+						</div>
+						<form id="form-signup" action="javascript:signup();">
+							<div class="modal-body text-left">
+								<div class="form-group">
+									<input id="nama" class="form-control" type="text" placeholder="nama" pattern="[A-z\s]{3,20}" required title="minim 3 karakter yg diperbolehkan a-z A-Z">
+								</div>
+								<div class="form-group">
+									<input id="alamat" class="form-control" type="text" placeholder="alamat" required>
+								</div>
+								<div class="form-group">
+									<input id="nomor" class="form-control" type="text" placeholder="no. hp" pattern="[0-9-]+" required title="karakter yg diperbolehkan 0-9">
+								</div>
+								<div class="form-group input-group">
+								    <span class="input-group-addon">mac</span>
+									<input id="mac" class="form-control" type="text" value="$(mac)" readonly="readonly">
+								</div>
+								<div class="form-group">
+									<select id="paket" class="form-control" required>
+										<option value="" selected>- pilih paket -</option>
+										<option value="10Mbps - Rp 110.000">10Mbps - Rp 110.000</option>
+										<option value="20Mbps - Rp 200.000">20Mbps - Rp 200.000</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<input id="username" class="form-control" type="text" placeholder="username" pattern="[A-z0-9]{4,20}" required title="minimal 4 karakter yg diperbolehkan a-z A-Z 0-9 tanpa spasi">
+								</div>
+								<div class="form-group">
+									<input id="password1" class="form-control" type="password" placeholder="password" autocomplete="off" pattern=".{3,}" required title="minimal 3 karakter">
+								</div>
+								<div class="form-group">
+								    <div id="validate-status"></div>
+									<input id="password2" class="form-control" type="password" placeholder="ulangi password" autocomplete="off" pattern=".{3,}" required title="minimal 3 karakter">
+								</div>
+								<div class="form-check">
+									<label class="form-check-label">
+										<input type="checkbox" class="form-check-input" required="required">
+										<span class="check">Saya setuju dengan <a href="tos.html" target="_blank">syarat &amp; ketentuan</a> @IDSkyNetwork</span>
+									</label>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button id="proses" type="submit" class="btn btn-success btn-md pull-right">PROSES</button>
+								<button class="btn btn-warning btn-md pull-left" data-dismiss="modal">BATAL</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div id="confirm" class="modal fade" role="dialog" data-backdrop="static">
+				<div class="modal-dialog modal-sm">
+					<!-- Modal content-->
+					<div class="modal-content">
+						<div class="modal-body text-center">
+						    <p></p>
+							<p>Permintaan Anda berhasil terkirim, silahkan tunggu konfirmasi dari kami via sms.</p>
+							<button type="button" class="btn btn-success center-block" data-dismiss="modal">OK</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/signup.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+</body>
+</html>

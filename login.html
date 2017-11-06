@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>IDSkyNetwork - Login</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv="pragma" content="no-cache" />
+		<meta http-equiv="expires" content="-1" />
+		<link rel="shortcut icon" href="img/corner.png" type="image/x-icon">
+		<link rel="icon" href="img/corner.png" type="image/x-icon">
+		<link rel="stylesheet" href="css/custom.bootstrap.min.css">
+		<link rel="stylesheet" href="css/custom.css">
+	</head>
+	<body class="bg-img">
+		$(if chap-id)
+		<form name="sendin" action="$(link-login-only)" method="post">
+			<input type="hidden" name="username" />
+			<input type="hidden" name="password" />
+			<input type="hidden" name="dst" value="$(link-orig)" />
+			<input type="hidden" name="popup" value="true" />
+		</form>
+		<script type="text/javascript" src="js/md5.js"></script>
+		<script type="text/javascript">
+		function doLogin() {
+			document.sendin.username.value = document.login.username.value;
+			document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
+			document.sendin.submit();
+			return false;
+		}
+		</script>
+		$(endif)
+		<div class="jumbroton">
+			<div class="col-md-4 col-md-offset-4 text-center">
+				<img class="logo" src="img/corner.png">
+				<fieldset class="fieldset title">
+					<legend align="center" class="legend">
+						<span class="text-center">MEMBER LOGIN</span>
+					</legend>
+				</fieldset>
+				<div id="error" class='error'>
+					<script type="text/javascript">
+					var error="$(error)";
+					if(error=="credit limit reached"){
+						document.write('<div class="alert alert-danger"><i class="icon-attention-circled"></i>Batas kredit user <b>$(username)</b> sudah habis</div>');
+						}
+					else if(error=="uptime limit reached"){
+						document.write('<div class="alert alert-danger"><i class="icon-attention-circled"></i>Masa aktif user <b>$(username)</b> sudah habis</div>');
+						}
+					else if(error=="download limit reached"){
+						document.write('<div class="alert alert-danger"><i class="icon-attention-circled"></i>Kuota user <b>$(username)</b> telah habis</div>');
+						}
+					else if(error=="no valid profile found"){
+						document.write('<div class="alert alert-danger"><i class="icon-attention-circled"></i>Masa aktif user <b>$(username)</b> telah habis</div>');
+						}
+					else if(error=="invalid password"){
+						document.write('<div class="alert alert-danger"><i class="icon-attention-circled"></i>username / password tidak valid!</div>');
+						}
+					else if(error=="simultaneous session limit reached") {
+						document.write('<div class="alert alert-danger"><i class="icon-attention-circled"></i>User <b>$(username)</b> sudah login di device lain</div>');
+						}
+					else if(error){
+						document.write('<div class="alert alert-danger"><i class="icon-attention-circled"></i>$(error)</div>');
+					}
+					</script>
+				</div>
+				<form name="login" action="$(link-login-only)" method="post" $(if chap-id) onSubmit="return doLogin()" $(endif)>
+					<input type="hidden" name="dst" value="$(link-orig)" />
+					<input type="hidden" name="popup" value="true" />
+					<div class="form-group">
+						<input type="text" class="form-control text-center input-login" name="username"  placeholder="username" value="$(username)" required="required" autocomplete="off">
+					</div>
+					<div class="form-group">
+						<input type="password" class="form-control text-center input-login" name="password"  placeholder="password" required="required" autocomplete="off">
+					</div>
+					<div class="form-group text-center">
+						<button type="submit" class="btn btn-success">LOGIN</button>
+					</div>
+					<div class="form-group text-center">
+						<p class="p">Belum punya akun? klik <a href="paket.html">DISINI</a></p>
+					</div>
+				</form>
+			</div>
+			<div class="col-md-4 col-md-offset-4 text-center copyright">
+				<fieldset class="fieldset">
+					<legend align="center" class="legend">
+						<span class="icon-copyright text-center copyright">wificorner 2017</span>
+					</legend>
+				</fieldset>
+				<div class="cs">
+                    <h4>Sleman, Yogyakarta, Indonesia</h4>
+				    CS : <span class="icon-whatsapp">t.me/lspcisec</span>
+				</div>
+			</div>
+			<div id="modal-notice" class="modal fade" role="dialog" data-backdrop="static">
+				<div class="modal-dialog modal-sm">
+					<!-- Modal content-->
+					<div class="modal-content">
+						<div class="text-warning modal-header">
+							<h4 class="modal-title text-center icon-attention-circled">Oops..</h4>
+						</div>
+						<div class="modal-body">
+							<h4>Hello.. $(username)</h4>
+							<p>Mohon maaf, masa aktif Anda telah habis, silahkan melakukan pembayaran jika Anda ingin memperpanjang masa aktif.</p>
+							<p>Atau</p>
+							<p>Klik <a href="paket.html">DISINI</a> untuk melihat daftar paket terbaru.</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default btn-sm center-block" data-dismiss="modal">OK</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script language="JavaScript">
+		if(error=="no valid profile found"){
+		$("#modal-notice").modal('show');
+	    }
+		var margin=10;
+		var speed=20;
+		var times=4;
+		for(var i=0;i<times;i++){
+		$("#error").animate({'margin-left':"+="+(margin=-margin)+'px'},speed);
+		$("#error").animate({'margin-right':"+="+(margin=-margin)+'px'},speed);
+		$("#error").animate({'margin-right':"+="+(margin=-margin)+'px'},speed);
+		$("#error").animate({'margin-left':"+="+(margin=-margin)+'px'},speed);
+		}
+		</script>
+	</body>
+</html>

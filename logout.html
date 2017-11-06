@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>@wificorner - Logout</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv="pragma" content="no-cache" />
+		<meta http-equiv="expires" content="-1" />
+		<link rel="shortcut icon" href="img/corner.png" type="image/x-icon">
+		<link rel="icon" href="img/corner.png" type="image/x-icon">
+		<link rel="stylesheet" href="css/custom.bootstrap.min.css">
+		<link rel="stylesheet" href="css/custom.css">
+	</head>
+	<body class="bg-img">
+		<script language="JavaScript">
+		function openLogin() {
+			if (window.name != 'hotspot_logout') return true;
+			open('$(link-login)', '_blank', '');
+			window.close();
+			return false;
+		}
+		</script>
+		<div class="jumbroton">
+			<div class="col-md-4 col-md-offset-4 text-center">
+				<img class="logo" src="img/corner.png">
+				<fieldset class="fieldset title">
+					<legend align="center" class="legend">
+						<span class="text-center">LOGOUT</span>
+					</legend>
+				</fieldset>
+				<p class="text-center info-user">Anda telah logout, silahkan relogin untuk terhubung kembali</p>
+				<table class="table table-bordered text-left">
+				<tr>
+				<td>User</td><td>
+					$(if login-by == 'trial')
+					TRIAL
+					$(elif login-by != 'mac')
+					$(username)
+					$(endif)
+				</td>
+				</tr>
+				<tr><td>Alamat IP</td><td>$(ip)</td></tr>
+				<tr><td>Terhubung</td><td>$(uptime)</td></tr>
+				<tr><td>Trafik</td><td>$(bytes-total-nice)</td></tr>
+				<tr><td>Sisa kuota</td><td>$(remain-bytes-total-nice)</td></tr>
+				$(if session-time-left)
+				<tr><td>Sisa masa aktif</td><td>$(session-time-left)</td></tr>
+				$(else)
+				<tr><td>Sisa masa aktif</td><td>unlimited</td></tr>
+				$(endif)
+			</table>
+			<div class="form-group">
+				<form action="$(link-login)" name="login" onSubmit="return openLogin()">
+					<button type="submit" class="btn btn-success">RELOGIN</button>
+				</form>
+			</div>
+		</div>
+		<div class="col-md-4 col-md-offset-4 text-center copyright">
+			<fieldset class="fieldset">
+				<legend align="center" class="legend">
+					<span class="icon-copyright text-center copyright">wificorner 2017</span>
+				</legend>
+			</fieldset>
+			<div class="cs">
+				<h4>Jl. Anggrek No. 25B - Nganjuk</h4>
+				CS : <span class="icon-whatsapp">08123456789</span>
+			</div>
+		</div>
+	</div>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
